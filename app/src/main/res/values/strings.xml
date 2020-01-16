@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Patrones</string>
+    <string name="filling">Tomate</string>
+    <string name="filling_desc">Tomates frescos del mediterraneo</string>
+    <string name="calories">30 calorías</string>
+    <string name="add">Añadir</string>
+    <string name="alt_text">Una imagen de tomates frescos</string>
+</resources>
