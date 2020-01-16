@@ -1,4 +1,6 @@
-package com.santiagoperdomo.patrones
+package com.santiagoperdomo.patrones.factory_builder
+
+import com.santiagoperdomo.patrones.factory_builder.interfaces_absstractclass.Drink
 
 class Coke : Drink {
 

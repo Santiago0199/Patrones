@@ -1,4 +1,9 @@
-package com.santiagoperdomo.patrones
+package com.santiagoperdomo.patrones.factory_builder.factory
+
+import com.santiagoperdomo.patrones.factory_builder.Cheese
+import com.santiagoperdomo.patrones.factory_builder.interfaces_absstractclass.Filling
+import com.santiagoperdomo.patrones.factory_builder.Ham
+import com.santiagoperdomo.patrones.factory_builder.Tomato
 
 class FillingFactory {
 
