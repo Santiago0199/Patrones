@@ -11,6 +11,7 @@ import com.santiagoperdomo.patrones.bridge.Hamburguesa
 import com.santiagoperdomo.patrones.bridge.HamburguesaAbierta
 import com.santiagoperdomo.patrones.bridge.HamburguesaAbstract
 import com.santiagoperdomo.patrones.bridge.HamburguesaCerrada
+import com.santiagoperdomo.patrones.facade.Facade
 import com.santiagoperdomo.patrones.factory_builder.builder.SandwichBuilder
 import com.santiagoperdomo.patrones.strategy.Card
 import com.santiagoperdomo.patrones.strategy.Cash
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         strategy()
         adapter()
         bridge()
+        facade()
     }
 
     fun factory(){
@@ -73,5 +75,10 @@ class MainActivity : AppCompatActivity() {
 
         val cerrada: HamburguesaAbstract = Hamburguesa("Pollo", "Tomate", HamburguesaCerrada())
         cerrada.hacer()
+    }
+
+    fun facade(){
+        val facade = Facade()
+        Log.d(TAG, facade.getNameApple())
     }
 }
