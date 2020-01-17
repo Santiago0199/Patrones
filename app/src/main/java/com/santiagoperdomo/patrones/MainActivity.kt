@@ -3,6 +3,10 @@ package com.santiagoperdomo.patrones
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.santiagoperdomo.patrones.factory_builder.builder.SandwichBuilder
+import com.santiagoperdomo.patrones.strategy.Card
+import com.santiagoperdomo.patrones.strategy.Cash
+import com.santiagoperdomo.patrones.strategy.Cupon
+import com.santiagoperdomo.patrones.strategy.Payment
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,5 +28,16 @@ class MainActivity : AppCompatActivity() {
         //Patron Builder
         val sandwich = SandwichBuilder.sandwichCheeseAndHam()
         sandwich.getIngredients()
+        sandwich.getCalories()
+
+        //Patron Strategy
+        val process = "Card"
+
+        when(process){
+            "Card" -> Payment(Card())
+            "Cash" -> Payment(Cash())
+            "Cupon" -> Payment(Cupon())
+            else -> Payment(Cupon())
+        }
     }
 }
