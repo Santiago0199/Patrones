@@ -11,6 +11,7 @@ import com.santiagoperdomo.patrones.bridge.Hamburguesa
 import com.santiagoperdomo.patrones.bridge.HamburguesaAbierta
 import com.santiagoperdomo.patrones.bridge.HamburguesaAbstract
 import com.santiagoperdomo.patrones.bridge.HamburguesaCerrada
+import com.santiagoperdomo.patrones.criteria.*
 import com.santiagoperdomo.patrones.facade.Facade
 import com.santiagoperdomo.patrones.factory_builder.builder.SandwichBuilder
 import com.santiagoperdomo.patrones.strategy.Card
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         adapter()
         bridge()
         facade()
+        criteria()
     }
 
     fun factory(){
@@ -51,8 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun strategy(){
-        val process = "Card"
-        when(process){
+        when("Card"){
             "Card" -> Payment(Card())
             "Cash" -> Payment(Cash())
             "Cupon" -> Payment(Cupon())
@@ -80,5 +81,48 @@ class MainActivity : AppCompatActivity() {
     fun facade(){
         val facade = Facade()
         Log.d(TAG, facade.getNameApple())
+    }
+
+    fun criteria(){
+        val ingredients = ArrayList<Ingredient>()
+        ingredients.add(Ingredient("Cereal", "Producto local", true))
+        ingredients.add(Ingredient("Jamon", "Producto no local", false))
+        ingredients.add(Ingredient("Queso", "Producto local", true))
+        ingredients.add(Ingredient("Carne", "Producto no local", false))
+        ingredients.add(Ingredient("Pan", "Producto local", false))
+        ingredients.add(Ingredient("Helado", "Producto local", false))
+
+        var list: List<Ingredient>
+
+        Log.d(TAG, "INGREDIENTES VEGETARIANOS")
+        val vegetarians: Filter = VegetarianFilter()
+        list = vegetarians.meetIngredients(ingredients)
+        printList(list)
+
+        Log.d(TAG, "INGREDIENTES LOCALES")
+        val locals: Filter = LocalFilter()
+        list = locals.meetIngredients(ingredients)
+        printList(list)
+
+        Log.d(TAG, "INGREDIENTES NO LOCALES")
+        val noLocals: Filter = NoLocalFilter()
+        list = noLocals.meetIngredients(ingredients)
+        printList(list)
+
+        Log.d(TAG, "INGREDIENTES VEGETARIANOS Y LOCALES")
+        val vegetariansAndLocals: Filter = AndFilter(vegetarians, locals)
+        list = vegetariansAndLocals.meetIngredients(ingredients)
+        printList(list)
+
+        Log.d(TAG, "INGREDIENTES VEGETARIANOS O NO LOCALES")
+        val vegetariansAndNoLocals: Filter = OrFilter(vegetarians, noLocals)
+        list = vegetariansAndNoLocals.meetIngredients(ingredients)
+        printList(list)
+    }
+
+    fun printList(list: List<Ingredient>){
+        for (i in list){
+            Log.d(TAG, i.name + ", " + i.local + ", " + i.vegetarian)
+        }
     }
 }

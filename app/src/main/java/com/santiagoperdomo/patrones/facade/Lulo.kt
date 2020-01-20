@@ -2,6 +2,6 @@ package com.santiagoperdomo.patrones.facade
 
 class Lulo: Fruit {
     override fun getName(): String {
-        Lulo
+        return "Lulo"
     }
 }
