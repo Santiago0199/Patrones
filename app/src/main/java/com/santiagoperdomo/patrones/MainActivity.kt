@@ -18,6 +18,10 @@ import com.santiagoperdomo.patrones.strategy.Card
 import com.santiagoperdomo.patrones.strategy.Cash
 import com.santiagoperdomo.patrones.strategy.Cupon
 import com.santiagoperdomo.patrones.strategy.Payment
+import com.santiagoperdomo.patrones.prototype.Fibonacci
+import com.santiagoperdomo.patrones.prototype.SequenceCache
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         bridge()
         facade()
         criteria()
+        prototype()
     }
 
     fun factory(){
@@ -124,5 +129,31 @@ class MainActivity : AppCompatActivity() {
         for (i in list){
             Log.d(TAG, i.name + ", " + i.local + ", " + i.vegetarian)
         }
+    }
+
+    fun prototype(){
+        SequenceCache.loadCache()
+
+        val prime = SequenceCache.sequenceHashtable["1"]
+        Log.d(TAG, StringBuilder()
+            .append("El número primo de 1000 es: ")
+            .append(prime!!.result)
+            .toString())
+
+        val fibonacci = SequenceCache.sequenceHashtable["2"]
+        Log.d(TAG, StringBuilder()
+                .append("El número de fibonacci 1000 es: ")
+                .append(fibonacci!!.result)
+                .toString()
+        )
+
+        val clone = fibonacci.clone() as Fibonacci
+        val result = clone.result / 2
+
+        Log.d(TAG, StringBuilder()
+                .append("El número de fibonacci clonado y dividido por 2 da")
+                .append(result)
+                .toString()
+        )
     }
 }
