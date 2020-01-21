@@ -11,6 +11,8 @@ import com.santiagoperdomo.patrones.bridge.Hamburguesa
 import com.santiagoperdomo.patrones.bridge.HamburguesaAbierta
 import com.santiagoperdomo.patrones.bridge.HamburguesaAbstract
 import com.santiagoperdomo.patrones.bridge.HamburguesaCerrada
+import com.santiagoperdomo.patrones.composite.Composite
+import com.santiagoperdomo.patrones.composite.Node
 import com.santiagoperdomo.patrones.criteria.*
 import com.santiagoperdomo.patrones.decorator.*
 import com.santiagoperdomo.patrones.facade.Facade
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         criteria()
         prototype()
         decorator()
+        composite()
     }
 
     fun factory(){
@@ -170,5 +173,20 @@ class MainActivity : AppCompatActivity() {
         val hotdogKetchup = Ketchup(hotdog)
 
         Log.d(TAG, hotdogKetchup.getDescription() + " cuesta " + hotdogKetchup.getPrice() + " pesos")
+    }
+
+    fun composite(){
+        val nodeOne = Node("Primero")
+        val nodeTwo = Node("Segundo")
+
+        val compositeOne = Composite("ListaUno")
+        compositeOne.add(Node("ElementoUno"))
+        compositeOne.add(Node("ElementoDos"))
+
+        val compositionTwo = Composite("ListaDos")
+        compositionTwo.add(nodeOne)
+        compositionTwo.add(nodeTwo)
+        compositionTwo.add(compositeOne)
+        compositionTwo.inflate()
     }
 }
