@@ -12,6 +12,7 @@ import com.santiagoperdomo.patrones.bridge.HamburguesaAbierta
 import com.santiagoperdomo.patrones.bridge.HamburguesaAbstract
 import com.santiagoperdomo.patrones.bridge.HamburguesaCerrada
 import com.santiagoperdomo.patrones.criteria.*
+import com.santiagoperdomo.patrones.decorator.*
 import com.santiagoperdomo.patrones.facade.Facade
 import com.santiagoperdomo.patrones.factory_builder.builder.SandwichBuilder
 import com.santiagoperdomo.patrones.strategy.Card
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         facade()
         criteria()
         prototype()
+        decorator()
     }
 
     fun factory(){
@@ -155,5 +157,18 @@ class MainActivity : AppCompatActivity() {
                 .append(result)
                 .toString()
         )
+    }
+
+    fun decorator(){
+        val salchipapa = Salchipapa()
+        val salchipapaKetchup = Ketchup(salchipapa)
+        val salchipapaKetchupAndCheese = Cheese(salchipapaKetchup)
+
+        Log.d(TAG, salchipapaKetchupAndCheese.getDescription() + " cuesta " + salchipapaKetchupAndCheese.getPrice() + " pesos")
+
+        val hotdog = Hotdog()
+        val hotdogKetchup = Ketchup(hotdog)
+
+        Log.d(TAG, hotdogKetchup.getDescription() + " cuesta " + hotdogKetchup.getPrice() + " pesos")
     }
 }
