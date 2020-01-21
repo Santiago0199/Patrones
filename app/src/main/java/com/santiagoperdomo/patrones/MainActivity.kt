@@ -17,6 +17,8 @@ import com.santiagoperdomo.patrones.criteria.*
 import com.santiagoperdomo.patrones.decorator.*
 import com.santiagoperdomo.patrones.facade.Facade
 import com.santiagoperdomo.patrones.factory_builder.builder.SandwichBuilder
+import com.santiagoperdomo.patrones.observer.Order
+import com.santiagoperdomo.patrones.observer.Sandwich
 import com.santiagoperdomo.patrones.strategy.Card
 import com.santiagoperdomo.patrones.strategy.Cash
 import com.santiagoperdomo.patrones.strategy.Cupon
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         prototype()
         decorator()
         composite()
+        observer()
     }
 
     fun factory(){
@@ -188,5 +191,15 @@ class MainActivity : AppCompatActivity() {
         compositionTwo.add(nodeTwo)
         compositionTwo.add(compositeOne)
         compositionTwo.inflate()
+    }
+
+    fun observer(){
+        val sandwich = Sandwich()
+        val order = Order(sandwich)
+
+        sandwich.addObserver(order)
+        sandwich.setReady(false)
+
+        sandwich.setReady(true)
     }
 }
