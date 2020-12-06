@@ -1,2 +1,2 @@
 # Patrones
-Patrones de diseño
+Patrones de diseño.
